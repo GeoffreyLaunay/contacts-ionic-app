@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>
+      Mes Contacts
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-refresher (ionRefresh)="loadContacts()">
+    <ion-refresher-content
+      pullingIcon="arrow-dropdown"
+      pullingText="Pull to refresh"
+      refreshingSpinner="circles"
+      refreshingText="Chargement en cours...">
+    </ion-refresher-content>
+  </ion-refresher>
+
+  <ion-list *ngIf="contactsList">
+    <ion-item *ngFor="let contact of contactsList">
+      <ion-avatar item-start>
+        <img src="{{ contact.profileImage }}" *ngIf="contact.profileImage">
+        <img src="assets/imgs/logo.png" *ngIf="!contact.profileImage">
+      </ion-avatar>
+      <h2>{{ contact.displayName }}</h2>
+      <h3>{{ contact.mainEmail }} - {{ contact.mainPHoneNumber }}</h3>
+    </ion-item>
+  </ion-list>
+</ion-content>
